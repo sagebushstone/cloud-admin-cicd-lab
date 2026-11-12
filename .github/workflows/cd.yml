@@ -1,0 +1,31 @@
+name: CD - Deploy to Kind Kubernetes
+on:
+  workflow_run:
+    workflows: ["CI - Build and Publish Container"]
+    types: [completed]
+    branches: ["main"]
+permissions:
+  contents: read
+  packages: read
+jobs:
+  deploy-to-kind:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Confirm deployment tools
+        run: |
+          docker --version
+          kubectl version --client
+          kind version
+          kubectl get nodes
+      - name: Deploy latest image to Kind Kubernetes
+        run: |
+          IMAGE="ghcr.io/${{ github.repository_owner }}/cloud-admin-cicd-lab:latest"
+          ./scripts/deploy-kind.sh "$IMAGE"
+      - name: Smoke test deployed application
+        run: |
+          sleep 5
+          curl -f http://localhost:8080
+          curl -f http://localhost:8080/health.html
