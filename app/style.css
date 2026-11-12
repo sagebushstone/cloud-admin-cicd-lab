@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; background: #f4f7fb; margin: 0; padding: 0; }
+main { max-width: 850px; margin: 80px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 10px
+rgba(0,0,0,0.12); }
+h1 { color: #174a7c; }
