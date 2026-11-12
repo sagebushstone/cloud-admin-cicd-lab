@@ -13,6 +13,8 @@ spec:
       labels:
         app: cloud-admin-web
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret
       containers:
       - name: web
         image: nginx:1.27-alpine
