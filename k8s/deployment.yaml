@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-admin-web
+  namespace: cicd-lab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloud-admin-web
+  template:
+    metadata:
+      labels:
+        app: cloud-admin-web
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.27-alpine
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /health.html
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
