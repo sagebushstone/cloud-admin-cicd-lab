@@ -44,7 +44,7 @@ template:
   spec:
     containers:
     - name: web
-      image: ghcr.io/williamakotam/cloud-admin-cicd-lab:latest
+      image: ghcr.io/sagebushstone/cloud-admin-cicd-lab:latest
       imagePullPolicy: Always
       ports:
         - containerPort: 80
