@@ -4,4 +4,6 @@ metadata:
   name: cloud-admin-web-config
   namespace: cicd-lab
 data:
-  APP_ENV: production
+  APP_ENV: "classroom"
+  COURSE_NAME: "Intelligent Cloud Administration"
+EOF
